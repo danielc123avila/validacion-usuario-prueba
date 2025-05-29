@@ -1,1 +1,118 @@
-<p>register-form works!</p>
+<div class="container">
+  <h2>Registro de Usuario</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+
+    <!-- Cédula -->
+    <div class="form-group">
+      <label for="cedula">Cédula:</label>
+      <input
+        type="text"
+        id="cedula"
+        formControlName="cedula"
+        placeholder="Cédula"
+        readonly
+        class="form-control">
+    </div>
+
+    <!-- Nombre -->
+    <div class="form-group">
+      <label for="nombre">Nombre Completo: *</label>
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        placeholder="Nombre Completo"
+        class="form-control"
+        [class.error]="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched">
+
+      <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched" class="error-text">
+        El nombre es requerido
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label for="telefono">Número de Teléfono: *</label>
+      <input
+        type="tel"
+        id="telefono"
+        formControlName="telefono"
+        placeholder="Ej: 3001234567"
+        class="form-control"
+        [class.error]="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched">
+
+      <div *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched" class="error-text">
+        Ingrese un teléfono válido (10 dígitos)
+      </div>
+    </div>
+
+    <!-- Ciudad -->
+    <div class="form-group">
+      <label for="ciudad">Ciudad: *</label>
+      <select
+        id="ciudad"
+        formControlName="ciudad"
+        (change)="onCiudadChange($event)"
+        class="form-control"
+        [class.error]="registerForm.get('ciudad')?.invalid && registerForm.get('ciudad')?.touched">
+        <option value="">Selecciona una ciudad</option>
+        <option value="Cali">Cali</option>
+        <option value="Bogotá">Bogotá</option>
+        <option value="Medellín">Medellín</option>
+        <option value="Otro">Otro</option>
+      </select>
+
+      <div *ngIf="registerForm.get('ciudad')?.invalid && registerForm.get('ciudad')?.touched" class="error-text">
+        Selecciona una ciudad
+      </div>
+    </div>
+
+    <!-- Otra ciudad (campo condicional) -->
+    <div class="form-group" *ngIf="showOtroCiudad">
+      <label for="otraCiudad">Especifica la ciudad: *</label>
+      <input
+        type="text"
+        id="otraCiudad"
+        formControlName="otraCiudad"
+        placeholder="Ingresa tu ciudad"
+        class="form-control"
+        [class.error]="registerForm.get('otraCiudad')?.invalid && registerForm.get('otraCiudad')?.touched">
+
+      <div *ngIf="registerForm.get('otraCiudad')?.invalid && registerForm.get('otraCiudad')?.touched" class="error-text">
+        Especifica tu ciudad
+      </div>
+    </div>
+
+    <!-- Subir foto -->
+    <div class="form-group">
+      <label for="foto">Foto: *</label>
+      <input
+        type="file"
+        id="foto"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        class="form-control file-input">
+
+      <!-- Vista previa de la imagen -->
+      <div *ngIf="previewUrl" class="image-preview">
+        <img [src]="previewUrl" alt="Vista previa" class="preview-image">
+        <p class="preview-text">Vista previa de tu foto</p>
+      </div>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+      ❌ {{ errorMessage }}
+    </div>
+
+    <!-- Botón de registro -->
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="isLoading || registerForm.invalid">
+      {{ isLoading ? 'Registrando...' : 'Registrar' }}
+    </button>
+
+  </form>
+</div>

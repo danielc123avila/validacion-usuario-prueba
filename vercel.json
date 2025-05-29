@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/validacion-usuario-prueba/index.html"
+      "dest": "dist/validacion-usuario-prueba/browser/index.html"
     }
   ]
 }

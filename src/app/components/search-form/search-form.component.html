@@ -1,1 +1,74 @@
-<p>search-form works!</p>
+<div class="container">
+  <h2>Validar Usuario</h2>
+
+  <!-- Formulario de validación -->
+  <form [formGroup]="cedulaForm" (ngSubmit)="onSubmit()" class="validation-form">
+    <div class="form-group">
+      <input
+        type="text"
+        formControlName="cedula"
+        placeholder="Ingrese su cédula (6-10 dígitos)"
+        class="form-control"
+        [class.error]="cedulaForm.get('cedula')?.invalid && cedulaForm.get('cedula')?.touched">
+
+      <div *ngIf="cedulaForm.get('cedula')?.invalid && cedulaForm.get('cedula')?.touched" class="error-text">
+        Ingrese una cédula válida (solo números, 6-10 dígitos)
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="isLoading || cedulaForm.invalid">
+      {{ isLoading ? 'Validando...' : 'Validar' }}
+    </button>
+  </form>
+
+
+  <!-- Usuario encontrado -->
+  <div *ngIf="userFound === true" class="user-info">
+    <h3>✅ Usuario encontrado</h3>
+    <div class="user-details">
+      <p><strong>Cédula:</strong> {{ validatedCedula }}</p>
+      <p><strong>Nombre:</strong> {{ userData.nombre || 'No disponible' }}</p>
+      <p><strong>Teléfono:</strong> {{ userData.telefono || 'No disponible' }}</p>
+      <p><strong>Ciudad:</strong> {{ userData.ciudad || 'No disponible' }}</p>
+
+      <!-- Mostrar foto si existe -->
+      <div *ngIf="userData.foto" class="user-photo-container">
+        <img [src]="userData.foto" alt="Foto usuario" class="user-photo">
+      </div>
+
+      <!-- Mostrar todos los campos disponibles del usuario para debugging -->
+      <details style="margin-top: 15px;">
+        <summary style="cursor: pointer; color: #666;">Ver todos los datos (debug)</summary>
+        <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; font-size: 12px; margin-top: 10px;">{{ userData | json }}</pre>
+      </details>
+    </div>
+
+    <p class="success-message">¡Usuario registrado encontrado! Puedes continuar con el proceso.</p>
+
+    <div style="display: flex; gap: 10px; margin-top: 15px;">
+      <button (click)="continuarProceso()" class="btn btn-success">
+        Continuar por WhatsApp
+      </button>
+      <button (click)="nuevaBusqueda()" class="btn" style="background: #6c757d; color: white;">
+        Nueva Búsqueda
+      </button>
+    </div>
+  </div>
+
+  <!-- Usuario no registrado -->
+  <div *ngIf="userFound === false" class="user-not-found">
+    <h3>❌ No estás registrado</h3>
+    <p style="margin-bottom: 15px;">
+      La cédula <strong>{{ validatedCedula }}</strong> no se encuentra en nuestro sistema.
+      Por favor completa el siguiente formulario para registrarte:
+    </p>
+
+    <button (click)="nuevaBusqueda()" class="btn" style="background: #6c757d; color: white; margin-bottom: 15px;">
+      ← Buscar otra cédula
+    </button>
+
+  </div>
+</div>

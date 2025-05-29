@@ -1,0 +1,90 @@
+body {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: "Poppins", sans-serif;
+}
+
+.register-form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.register-form h2 {
+  color: #ff758c;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.register-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #444;
+}
+
+.file-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ff758c;
+  background: #fff5f7;
+  transition: 0.3s;
+}
+
+.file-input:hover {
+  background: #ffe5eb;
+}
+
+.image-preview {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.preview-image {
+  max-width: 160px;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 4px solid #ff758c;
+  transition: 0.3s;
+}
+
+.preview-image:hover {
+  transform: scale(1.05);
+}
+
+.preview-text {
+  margin-top: 8px;
+  color: #555;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: 0.3s ease-in-out;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #ff758c;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #d9536f;
+  box-shadow: 0 5px 15px rgba(255, 117, 140, 0.3);
+}
+
+.btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}

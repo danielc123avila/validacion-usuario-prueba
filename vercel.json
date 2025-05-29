@@ -1,6 +1,13 @@
 {
   "version": 2,
 
+  "builds": [
+    {
+      "src": "dist/validacion-usuario-prueba/server/server.mjs",
+      "use": "@vercel/node"
+    }
+  ],
+
   "routes": [
     {
       "src": "/(.*)",

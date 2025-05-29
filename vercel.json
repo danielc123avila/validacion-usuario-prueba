@@ -12,11 +12,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/dist/validacion-usuario-prueba/server/server.mjs"
+      "dest": "dist/validacion-usuario-prueba/server/server.mjs"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/validacion-usuario-prueba/browser/index.html"
+      "dest": "dist/validacion-usuario-prueba/browser/index.html"
     }
   ]
 }

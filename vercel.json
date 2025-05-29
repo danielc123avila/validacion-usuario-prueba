@@ -1,5 +1,14 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/angular",
+      "config": {
+        "outputDirectory": "dist/validacion-usuario-prueba/browser/index.html"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",

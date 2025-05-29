@@ -1,17 +1,22 @@
 {
   "version": 2,
-
   "builds": [
     {
-      "src": "dist/validacion-usuario-prueba/server/server.mjs",
-      "use": "@vercel/node"
+      "src": "dist/your-project/server/server.mjs",
+      "use": "@vercel/node",
+      "config": {
+
+      }
     }
   ],
-
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/dist/your-project/server/server.mjs"
+    },
+    {
       "src": "/(.*)",
-      "dest": "dist/validacion-usuario-prueba/browser/index.html"
+      "dest": "/dist/your-project/browser/index.html"
     }
   ]
 }
